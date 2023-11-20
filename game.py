@@ -1,8 +1,6 @@
 import pygame as pg
 from pygame.locals import *
 
-
-
 class Game():
     def __init__(self):
         value = 1

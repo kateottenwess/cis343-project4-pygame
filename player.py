@@ -3,7 +3,7 @@ import pygame as pg
 class Player(pg.sprite.Sprite):
     def __init__(self):
         super(Player, self).__init__();
-        self.image = pg.image.load("./megaman.jpg").convert_alpha() # can resolve windows drawing issues
+       # self.image = pg.image.load("./megaman.jpg").convert_alpha() # can resolve windows drawing issues
         self.rect = self.image.get_rect()
         self.rect.centerx = 370
         self.rect.centery = 240
