@@ -1,6 +1,7 @@
 import pygame
 import pygame as pg
 from player import Player
+# this is "from (filename) import (class name)
 from pygame.locals import *
 
 
@@ -11,14 +12,15 @@ class Game(pygame.sprite.Sprite):
         self.image = pygame.image.load(image_file)
         self.rect = self.image.get_rect()
         self.rect.left, self.rect.top = location
+        # TODO create properties and setters?
 
 
-# is this supposed to be in class
+# TODO is this supposed to be in class
 def main():
     # start pygame
     pg.init()
 
-    player = Player.init()
+    player = Player()
 
     # get screen object
     screen = pg.display.set_mode((960, 720))
