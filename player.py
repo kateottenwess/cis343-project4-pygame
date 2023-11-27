@@ -1,14 +1,16 @@
 import pygame as pg
+import units
 
-class Player(pg.sprite.Sprite):
+class Player(units):
     def __init__(self):
-        super(Player, self).__init__();
-       # self.image = pg.image.load("./megaman.jpg").convert_alpha() # can resolve windows drawing issues
-        self.rect = self.image.get_rect()
-        self.rect.centerx = 370
-        self.rect.centery = 240
-        
-    def update():
+        super(Player, self).__init__([370, 240], "frogger.png")
+
+
+    def draw(self, screen):
+        screen.blit(self.image, self.rect)
+
+
+    def update(self, delta):
         pass
 
     def up(self, delta):
