@@ -1,4 +1,3 @@
-import os
 import pygame as pg
 
 
@@ -12,12 +11,16 @@ class Units(pg.sprite.Sprite):
         self.rect.centery = start_location[1]
         self.start_location = start_location
         # not entirely sure why he has the direction set to 1 in example code
+        # TODO do we need to create properties for all of the sprite vals
+
+        # define any other functions that enemy and player may have in common here but I don't think there are any since
+        # they move differently
+
+    # TODO why is this yelling
+    @direction.setter
+    def direction(self, value):
+        self.__direction = value
 
     def draw(self, screen):
         screen.blit(self.image, self.rect)
 
-    # define any other functions that enemy and player may have in common here but I don't think there are any since
-    # they move differently
-    @direction.setter
-    def direction(self, value):
-        self.__direction = value
