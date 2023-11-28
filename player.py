@@ -1,12 +1,41 @@
-import pygame as pg
 from units import Units
-import os
 
 
 class Player(Units):
-    def __init__(self):
+    def __init__(self, points, lives):
         super(Player, self).__init__([460, 700], 'frogger-small.png')
+        # self.points = points
+        # self.lives = lives
         # TODO do we need to set the image things or since its done in units we dont need to?
+
+    '''
+    @property
+    def points(self):
+        return self.__points
+
+    @property
+    def lives(self):
+        return self.__lives
+
+    @points.setter
+    def points(self, points):
+        if not points:
+            raise ValueError("Points cannot be blank.")
+        if not isinstance(points, int):
+            raise ValueError("Name must be an int.")
+        if points < 0:
+            raise ValueError("Points can not be negative")
+        self.points = points
+
+    @lives.setter
+    def points(self, lives):
+        if not lives:
+            raise ValueError("lives cannot be blank.")
+        if not isinstance(lives, int):
+            raise ValueError("Name must be an int.")
+        if lives < 0 or lives > 3:
+            raise ValueError("Player must have within 0 and 3 lives")
+    '''
 
     def draw(self, screen):
         screen.blit(self.image, self.rect)
@@ -21,4 +50,3 @@ class Player(Units):
     def down(self, delta):
         if self.rect.y < 480:
             self.rect.y += 120 * delta
-

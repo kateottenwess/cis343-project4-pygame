@@ -5,6 +5,7 @@ from enemies import Enemies
 from utilities import Utilities
 # this is "from (filename) import (class name)
 from pygame.locals import *
+import os
 
 
 class Game(pygame.sprite.Sprite):
@@ -25,7 +26,14 @@ def main():
     # get screen object
     screen = pg.display.set_mode((960, 720))
 
-    player = Player()
+    # Get font setup
+    pg.freetype.init()
+    font_path = os.path.join(os.path.dirname(os.path.realpath(__file__)), "./assets/", "PermanentMarker-Regular.ttf")
+    font_size = 64
+    font = pg.freetype.Font(font_path, font_size)
+    WHITE = (254, 254, 254)
+
+    player = Player(0, 3)
 
     # we don't have to keep it this way I am just testing the images
     car1 = Enemies('frogger-car1.png', [100, 610])
@@ -33,8 +41,10 @@ def main():
     car3 = Enemies('frogger-car3.png', [100, 520])
     car12 = Enemies('frogger-car1.png', [100, 475])
     car22 = Enemies('frogger-car2.png', [860, 425])
-    log1 = Utilities('frogger-log.png', [100, 325])
-    turtle = Utilities('frogger-turtle.png', [100, 290])
+    log1 = Utilities('frogger-log.png', [100, 330])
+    turtle = Utilities('frogger-turtle.png', [100, 275])
+    log2 = Utilities('frogger-log.png', [100, 220])
+    turtle2 = Utilities('frogger-turtle.png', [100, 170])
 
     enemies = pg.sprite.Group()
 
@@ -91,10 +101,11 @@ def main():
         car12.draw(screen)
         car22.draw(screen)
         log1.draw(screen)
+        log2.draw(screen)
+        turtle2.draw(screen)
 
         for fly in flies:
             fly.draw(screen)
-
 
         turtle.draw(screen)
 
