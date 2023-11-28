@@ -1,5 +1,6 @@
 import pygame as pg
 from units import Units
+import os
 
 
 class Player(Units):
@@ -20,3 +21,4 @@ class Player(Units):
     def down(self, delta):
         if self.rect.y < 480:
             self.rect.y += 120 * delta
+
