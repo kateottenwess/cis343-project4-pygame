@@ -20,10 +20,11 @@ def main():
     # start pygame
     pg.init()
 
-    player = Player()
-
     # get screen object
     screen = pg.display.set_mode((960, 720))
+
+    player = Player()
+
     bg = Game('./assets/frogger-background.png', [0, 0])
     running = True
     # instantiate game object here!

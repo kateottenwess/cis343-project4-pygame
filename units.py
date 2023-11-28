@@ -1,10 +1,11 @@
 import pygame as pg
+import os
 
 
 class Units(pg.sprite.Sprite):
     def __init__(self, start_location, image_name):
         super(Units, self).__init__()
-        self.image = pg.image.load(image_name).convert_alpha()
+        self.image = pg.image.load(os.path.join('assets', image_name)).convert_alpha()
         self.rect = self.image.get_rect()
         self.direction = 1
         self.rect.centerx = start_location[0]
@@ -22,6 +23,6 @@ class Units(pg.sprite.Sprite):
     def direction(self, value):
         self.__direction = value
     '''
+
     def draw(self, screen):
         screen.blit(self.image, self.rect)
-

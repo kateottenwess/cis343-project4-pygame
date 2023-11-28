@@ -4,7 +4,7 @@ from units import Units
 
 class Player(Units):
     def __init__(self):
-        super(Player, self).__init__([370, 240], "./assets/frogger.png")
+        super(Player, self).__init__([370, 240], 'frogger.png')
         # TODO do we need to set the image things or since its done in units we dont need to?
 
     def draw(self, screen):
