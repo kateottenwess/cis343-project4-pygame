@@ -1,10 +1,10 @@
 import pygame as pg
-import units
+from units import Units
 
 
-class Enemies(units):
+class Enemies(Units):
     def __init__(self, image_name):
-        super(Enemies, self).__init__([370, 240], image_name)
+        super(Enemies, self).__init__([370, 240], image_name, [50, 30])
         # TODO do we need to set the image things or since its done in units we dont need to?
 
     def draw(self, screen):

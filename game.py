@@ -1,6 +1,7 @@
 import pygame
 import pygame as pg
 from player import Player
+from enemies import Enemies
 # this is "from (filename) import (class name)
 from pygame.locals import *
 
@@ -25,6 +26,19 @@ def main():
 
     player = Player()
 
+    enemies = pg.sprite.Group()
+
+    # TODO this is not right but a rough outline from the source code given
+
+    # car 1
+    '''
+    for i in range(500, 1000, 75):
+        for j in range(100, 600, 50):
+            enemy = Enemies((i, j))
+            enemies.add(enemy)
+    '''
+
+
     bg = Game('./assets/frogger-background.png', [0, 0])
     running = True
     # instantiate game object here!
@@ -42,6 +56,7 @@ def main():
         screen.blit(bg.image, bg.rect)
         # our_go.draw(screen)
         pg.display.flip()
+        player.draw(screen)
 
         delta = clock.tick(60) / 1000  # gives us how many ms the frame has taken
 
