@@ -2,6 +2,7 @@ import pygame
 import pygame as pg
 from player import Player
 from enemies import Enemies
+from utilities import Utilities
 # this is "from (filename) import (class name)
 from pygame.locals import *
 
@@ -32,8 +33,8 @@ def main():
     car3 = Enemies('frogger-car3.png', [100, 520])
     car12 = Enemies('frogger-car1.png', [100, 475])
     car22 = Enemies('frogger-car2.png', [860, 425])
-    log1 = Enemies('frogger-log.png', [100, 325])
-    turtle = Enemies('frogger-turtle.png', [100, 290])
+    log1 = Utilities('frogger-log.png', [100, 325])
+    turtle = Utilities('frogger-turtle.png', [100, 290])
 
     enemies = pg.sprite.Group()
 
@@ -42,13 +43,13 @@ def main():
     # set up flies TODO is there a better way to do this
     flies = []
 
-    fly1 = Enemies('frogger-fly.png', [75, 110])
-    fly2 = Enemies('frogger-fly.png', [210, 110])
-    fly3 = Enemies('frogger-fly.png', [345, 110])
-    fly4 = Enemies('frogger-fly.png', [480, 110])
-    fly5 = Enemies('frogger-fly.png', [620, 110])
-    fly6 = Enemies('frogger-fly.png', [760, 110])
-    fly7 = Enemies('frogger-fly.png', [895, 110])
+    fly1 = Utilities('frogger-fly.png', [75, 110])
+    fly2 = Utilities('frogger-fly.png', [210, 110])
+    fly3 = Utilities('frogger-fly.png', [345, 110])
+    fly4 = Utilities('frogger-fly.png', [480, 110])
+    fly5 = Utilities('frogger-fly.png', [620, 110])
+    fly6 = Utilities('frogger-fly.png', [760, 110])
+    fly7 = Utilities('frogger-fly.png', [895, 110])
 
     flies.append(fly1)
     flies.append(fly2)
