@@ -45,12 +45,6 @@ def main():
     car3 = Enemies('frogger-car3.png', [100, 520])
     car12 = Enemies('frogger-car1.png', [100, 475])
     car22 = Enemies('frogger-car2.png', [860, 425])
-    log1 = Utilities('frogger-log.png', [-100, 330])
-    turtle = Utilities('frogger-turtle.png', [100, 275])
-    log2 = Utilities('frogger-log.png', [100, 220])
-    turtle2 = Utilities('frogger-turtle.png', [100, 170])
-
-    enemies = pg.sprite.Group()
 
     # set up flies TODO is there a better way to do this
     flies = []
@@ -71,7 +65,7 @@ def main():
     flies.append(fly6)
     flies.append(fly7)
 
-    # set up logs
+    # set up logs TODO is there a better way to do this
     logs = []
 
     log1 = Utilities('frogger-log.png', [-100, 330])
@@ -87,6 +81,35 @@ def main():
     logs.append(log4)
     logs.append(log5)
     logs.append(log6)
+
+    # set up turtles
+    turtles = []
+
+    turtle1 = Utilities('frogger-turtle.png', [100, 275])
+    turtle2 = Utilities('frogger-turtle.png', [150, 275])
+    turtle3 = Utilities('frogger-turtle.png', [200, 275])
+    turtle4 = Utilities('frogger-turtle.png', [500, 275])
+    turtle5 = Utilities('frogger-turtle.png', [550, 275])
+    turtle6 = Utilities('frogger-turtle.png', [600, 275])
+    turtle7 = Utilities('frogger-turtle.png', [300, 170])
+    turtle8 = Utilities('frogger-turtle.png', [350, 170])
+    turtle9 = Utilities('frogger-turtle.png', [400, 170])
+    turtle10 = Utilities('frogger-turtle.png', [800, 170])
+    turtle11 = Utilities('frogger-turtle.png', [850, 170])
+    turtle12 = Utilities('frogger-turtle.png', [900, 170])
+
+    turtles.append(turtle1)
+    turtles.append(turtle2)
+    turtles.append(turtle3)
+    turtles.append(turtle4)
+    turtles.append(turtle5)
+    turtles.append(turtle6)
+    turtles.append(turtle7)
+    turtles.append(turtle8)
+    turtles.append(turtle9)
+    turtles.append(turtle10)
+    turtles.append(turtle11)
+    turtles.append(turtle12)
 
     # car 1
     '''
@@ -137,6 +160,9 @@ def main():
         for log in logs:
             log.update_log(0.01)
 
+        for turtle in turtles:
+            turtle.update_turtle(0.01)
+
         player.draw(screen)
         car1.draw(screen)
         car2.draw(screen)
@@ -153,7 +179,9 @@ def main():
         for log in logs:
             log.draw(screen)
 
-        turtle.draw(screen)
+        for turtle in turtles:
+            turtle.draw(screen)
+
         player.draw(screen)
 
         # redraw lives and score

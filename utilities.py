@@ -17,6 +17,14 @@ class Utilities(Units):
         if self.rect.x > 960:
             self.rect.x = -200
 
+    def update_turtle(self, delta):
+        # turtles move to left
+        self.rect.x += 100 * delta * -1
+
+        # if center of log goes past left edge, reset to right
+        if self.rect.x < -60:
+            self.rect.x = 1000
+
     def up(self, delta):
         if self.rect.y > 0:
             self.rect.y -= 120 * delta
