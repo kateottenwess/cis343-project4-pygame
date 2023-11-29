@@ -45,7 +45,7 @@ def main():
     car3 = Enemies('frogger-car3.png', [100, 520])
     car12 = Enemies('frogger-car1.png', [100, 475])
     car22 = Enemies('frogger-car2.png', [860, 425])
-    log1 = Utilities('frogger-log.png', [0, 330])
+    log1 = Utilities('frogger-log.png', [-100, 330])
     turtle = Utilities('frogger-turtle.png', [100, 275])
     log2 = Utilities('frogger-log.png', [100, 220])
     turtle2 = Utilities('frogger-turtle.png', [100, 170])
@@ -70,6 +70,23 @@ def main():
     flies.append(fly5)
     flies.append(fly6)
     flies.append(fly7)
+
+    # set up logs
+    logs = []
+
+    log1 = Utilities('frogger-log.png', [-100, 330])
+    log2 = Utilities('frogger-log.png', [350, 330])
+    log3 = Utilities('frogger-log.png', [650, 330])
+    log4 = Utilities('frogger-log.png', [150, 220])
+    log5 = Utilities('frogger-log.png', [450, 220])
+    log6 = Utilities('frogger-log.png', [850, 220])
+
+    logs.append(log1)
+    logs.append(log2)
+    logs.append(log3)
+    logs.append(log4)
+    logs.append(log5)
+    logs.append(log6)
 
     # car 1
     '''
@@ -116,7 +133,9 @@ def main():
         screen.blit(bg.image, bg.rect)
 
         player.update(delta)
-        log1.update_log(0.5)
+
+        for log in logs:
+            log.update_log(0.01)
 
         player.draw(screen)
         car1.draw(screen)
@@ -130,6 +149,9 @@ def main():
 
         for fly in flies:
             fly.draw(screen)
+
+        for log in logs:
+            log.draw(screen)
 
         turtle.draw(screen)
         player.draw(screen)

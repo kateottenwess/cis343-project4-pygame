@@ -15,7 +15,7 @@ class Utilities(Units):
 
         # if center of log goes past right edge, reset to left
         if self.rect.x > 960:
-            self.rect.x = 0
+            self.rect.x = -200
 
     def up(self, delta):
         if self.rect.y > 0:
