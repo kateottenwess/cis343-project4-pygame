@@ -191,8 +191,7 @@ def main():
         
         for hit in hits:
             # Increment score when frog eats a fly 
-            player.points += player.points
-            pass
+            player.points += 1
     
         # draw
         screen.fill([255, 255, 255])
