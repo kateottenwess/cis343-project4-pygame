@@ -38,3 +38,19 @@ class Units(pg.sprite.Sprite):
 
     def draw(self, screen):
         screen.blit(self.image, self.rect)
+
+    def update_right(self, delta):
+        # moving right
+        self.rect.x += 100 * delta
+
+        # if center of object goes past right edge, reset to left
+        if self.rect.x > 960:
+            self.rect.x = -200
+
+    def update_left(self, delta):
+        # moving left
+        self.rect.x += 100 * delta * -1
+
+        # if center of object goes past left edge, reset to right
+        if self.rect.x < -60:
+            self.rect.x = 1000

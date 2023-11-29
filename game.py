@@ -39,13 +39,6 @@ def main():
     # create player object
     player = Player(0, 3)
 
-    # TODO we don't have to keep it this way I am just testing the images
-    car1 = Enemies('frogger-car1.png', [100, 610])
-    car2 = Enemies('frogger-car2.png', [860, 565])
-    car3 = Enemies('frogger-car3.png', [100, 520])
-    car12 = Enemies('frogger-car1.png', [100, 475])
-    car22 = Enemies('frogger-car2.png', [860, 425])
-
     # set up flies TODO is there a better way to do this
     flies = []
 
@@ -111,13 +104,35 @@ def main():
     turtles.append(turtle11)
     turtles.append(turtle12)
 
-    # car 1
-    '''
-    for i in range(500, 1000, 75):
-        for j in range(100, 600, 50):
-            enemy = Enemies((i, j))
-            enemies.add(enemy)
-    '''
+    # set up slower cars
+    slow_cars = []
+
+    car1 = Enemies('frogger-car1.png', [100, 610])
+    car2 = Enemies('frogger-car1.png', [450, 610])
+    car3 = Enemies('frogger-car2.png', [860, 565])
+    car4 = Enemies('frogger-car2.png', [300, 565])
+    car5 = Enemies('frogger-car1.png', [0, 475])
+    car6 = Enemies('frogger-car1.png', [600, 475])
+
+    slow_cars.append(car1)
+    slow_cars.append(car2)
+    slow_cars.append(car3)
+    slow_cars.append(car4)
+    slow_cars.append(car5)
+    slow_cars.append(car6)
+
+    # set up faster cars
+    fast_cars = []
+
+    car7 = Enemies('frogger-car3.png', [50, 520])
+    car8 = Enemies('frogger-car3.png', [650, 520])
+    car9 = Enemies('frogger-car2.png', [950, 425])
+    car10 = Enemies('frogger-car2.png', [425, 425])
+
+    fast_cars.append(car7)
+    fast_cars.append(car8)
+    fast_cars.append(car9)
+    fast_cars.append(car10)
 
     # Startup the main game loop
     running = True
@@ -148,30 +163,28 @@ def main():
             print("You've consumed all the flies!")
             return
 
-        # TODO determine if checks need to be done here if frogger hit car or fell in water
-
-        # draw
-        # below (2) are used to create background
-        screen.fill([255, 255, 255])
-        screen.blit(bg.image, bg.rect)
+        # TODO determine if checks need to be done here if frogger hit car or fell in waater
 
         player.update(delta)
 
         for log in logs:
-            log.update_log(0.01)
+            log.update_right(0.01)
 
         for turtle in turtles:
-            turtle.update_turtle(0.01)
+            turtle.update_left(0.01)
+
+        for car in slow_cars:
+            car.update_right(0.01)
+
+        for car in fast_cars:
+            car.update_left(0.02)
+
+        # draw
+
+        screen.fill([255, 255, 255])
+        screen.blit(bg.image, bg.rect)
 
         player.draw(screen)
-        car1.draw(screen)
-        car2.draw(screen)
-        car3.draw(screen)
-        car12.draw(screen)
-        car22.draw(screen)
-        log1.draw(screen)
-        log2.draw(screen)
-        turtle2.draw(screen)
 
         for fly in flies:
             fly.draw(screen)
@@ -182,7 +195,11 @@ def main():
         for turtle in turtles:
             turtle.draw(screen)
 
-        player.draw(screen)
+        for car in fast_cars:
+            car.draw(screen)
+
+        for car in slow_cars:
+            car.draw(screen)
 
         # redraw lives and score
 
