@@ -182,8 +182,10 @@ def main():
         '''for fly in flies:            #need this here?
             fly.update(delta)
         '''
+        fly_group = pygame.sprite.Group(flies)
+
         # Checks for collisions between player and any of the flies, the True removes a fly from the flies group when collision occurs
-        hits = pygame.sprite.spritecollide(player, flies, True)
+        hits = pygame.sprite.spritecollide(player, fly_group, True)
         for hit in hits:
             # Increment score when frog eats a fly 
             player.points += player.points
