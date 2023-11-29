@@ -46,7 +46,17 @@ class Player(Units):
     def up(self, delta):
         if self.rect.y > 0:
             self.rect.y -= 120 * delta
+        # TODO
 
     def down(self, delta):
         if self.rect.y < 480:
             self.rect.y += 120 * delta
+        # TODO
+
+    def left(self, delta):
+        pass
+        # TODO
+
+    def right(self, delta):
+        pass
+        # TODO

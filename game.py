@@ -6,6 +6,7 @@ from utilities import Utilities
 # this is "from (filename) import (class name)
 from pygame.locals import *
 import os
+import pygame.freetype
 
 
 class Game(pygame.sprite.Sprite):
@@ -25,17 +26,20 @@ def main():
 
     # get screen object
     screen = pg.display.set_mode((960, 720))
+    bg = Game('./assets/frogger-background.png', [0, 0])
 
     # Get font setup
-    pg.freetype.init()
-    font_path = os.path.join(os.path.dirname(os.path.realpath(__file__)), "./assets/", "PermanentMarker-Regular.ttf")
+    pg.font.init()
+    font_path = os.path.join(os.path.dirname(os.path.realpath(__file__)), "./assets/", "PottaOne-Regular.ttf")
     font_size = 64
     font = pg.freetype.Font(font_path, font_size)
     WHITE = (254, 254, 254)
+    RED = (246, 46, 46)
 
+    # create player object
     player = Player(0, 3)
 
-    # we don't have to keep it this way I am just testing the images
+    # TODO we don't have to keep it this way I am just testing the images
     car1 = Enemies('frogger-car1.png', [100, 610])
     car2 = Enemies('frogger-car2.png', [860, 565])
     car3 = Enemies('frogger-car3.png', [100, 520])
@@ -77,23 +81,40 @@ def main():
             enemies.add(enemy)
     '''
 
-    bg = Game('./assets/frogger-background.png', [0, 0])
+    # Startup the main game loop
     running = True
-    # instantiate game object here!
+    delta = 0
+    # shotDelta = 500
+    fps = 60
     clock = pg.time.Clock()
+    clock.tick(fps)
+    score = 0
 
     while running:
         for event in pg.event.get():
             if event.type == pg.QUIT:
                 running = False
-        # update things that need to be updated
 
-        # draw & re render outputs
+        # update things that need to be updated
+        # move player
+
+        keys = pg.key.get_pressed()
+        if keys[K_s]:
+            player.down(delta)
+        if keys[K_w]:
+            player.left(delta)
+        if keys[K_n]:
+            player.up(delta)
+        if keys[K_e]:
+            player.right(delta)
+
+        # TODO determine if checks need to be done here if frogger hit car or fell in water
+
+        # draw
         # below (2) are used to create background
         screen.fill([255, 255, 255])
         screen.blit(bg.image, bg.rect)
-        # our_go.draw(screen)
-        pg.display.flip()
+
         player.draw(screen)
         car1.draw(screen)
         car2.draw(screen)
@@ -109,10 +130,26 @@ def main():
 
         turtle.draw(screen)
 
-        delta = clock.tick(60) / 1000  # gives us how many ms the frame has taken
+        # redraw lives and score
+
+        font.render_to(screen, (10, 10), "Lives: ", RED, None, size=60)
+
+        # TODO change this to str(player.lives) when we figure that out
+
+        font.render_to(screen, (215, 10), str(score), WHITE, None, size=60)
+        font.render_to(screen, (350, 10), "Score: ", RED, None, size=60)
+
+        # TODO change this to str(player.score) when we figure that out
+
+        font.render_to(screen, (575, 10), str(score), WHITE, None, size=60)
+
+        # flip when drawing is done
 
         pg.display.flip()
+
+        delta = clock.tick(60) / 1000  # gives us how many ms the frame has taken
 
 
 if __name__ == "__main__":
     main()
+    pg.quit()
