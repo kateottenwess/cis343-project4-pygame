@@ -180,10 +180,17 @@ def main():
             car.update_left(0.02)
         
         '''for fly in flies:            #need this here?
-            fly.update_flies(delta)
+            fly.update(delta)
         '''
+        # Checks for collisions between player and any of the flies, the True removes a fly from the flies group when collision occurs
+        hits = pygame.sprite.spritecollide(player, flies, True)
+        for hit in hits:
+            # Increment score when frog eats a fly 
+            player.points += player.points
+            pass
+    
+    
         # draw
-
         screen.fill([255, 255, 255])
         screen.blit(bg.image, bg.rect)
 
