@@ -52,8 +52,6 @@ def main():
 
     enemies = pg.sprite.Group()
 
-    # TODO this is not right but a rough outline from the source code given
-
     # set up flies TODO is there a better way to do this
     flies = []
 
@@ -107,6 +105,9 @@ def main():
             player.up(delta)
         if keys[K_e]:
             player.right(delta)
+        if len(flies) == 0:
+            print("You've consumed all the flies!")
+            return
 
         # TODO determine if checks need to be done here if frogger hit car or fell in water
 
@@ -114,6 +115,8 @@ def main():
         # below (2) are used to create background
         screen.fill([255, 255, 255])
         screen.blit(bg.image, bg.rect)
+
+        player.update(delta)
 
         player.draw(screen)
         car1.draw(screen)
@@ -129,6 +132,7 @@ def main():
             fly.draw(screen)
 
         turtle.draw(screen)
+        player.draw(screen)
 
         # redraw lives and score
 

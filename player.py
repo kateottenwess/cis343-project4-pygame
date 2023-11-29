@@ -4,11 +4,10 @@ from units import Units
 class Player(Units):
     def __init__(self, points, lives):
         super(Player, self).__init__([460, 700], 'frogger-small.png')
-        # self.points = points
-        # self.lives = lives
+        self.__points = points
+        self.__lives = lives
         # TODO do we need to set the image things or since its done in units we dont need to?
 
-    '''
     @property
     def points(self):
         return self.__points
@@ -28,14 +27,13 @@ class Player(Units):
         self.points = points
 
     @lives.setter
-    def points(self, lives):
+    def lives(self, lives):
         if not lives:
             raise ValueError("lives cannot be blank.")
         if not isinstance(lives, int):
             raise ValueError("Name must be an int.")
         if lives < 0 or lives > 3:
             raise ValueError("Player must have within 0 and 3 lives")
-    '''
 
     def draw(self, screen):
         screen.blit(self.image, self.rect)
