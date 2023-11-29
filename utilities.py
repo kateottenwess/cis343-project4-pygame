@@ -9,8 +9,13 @@ class Utilities(Units):
     def draw(self, screen):
         screen.blit(self.image, self.rect)
 
-    def update(self, delta):
-        pass
+    def update_log(self, delta):
+        # logs move to the right
+        self.rect.x += 100 * delta
+
+        # if center of log goes past right edge, reset to left
+        if self.rect.x > 960:
+            self.rect.x = 0
 
     def up(self, delta):
         if self.rect.y > 0:

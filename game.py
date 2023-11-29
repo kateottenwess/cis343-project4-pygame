@@ -45,7 +45,7 @@ def main():
     car3 = Enemies('frogger-car3.png', [100, 520])
     car12 = Enemies('frogger-car1.png', [100, 475])
     car22 = Enemies('frogger-car2.png', [860, 425])
-    log1 = Utilities('frogger-log.png', [100, 330])
+    log1 = Utilities('frogger-log.png', [0, 330])
     turtle = Utilities('frogger-turtle.png', [100, 275])
     log2 = Utilities('frogger-log.png', [100, 220])
     turtle2 = Utilities('frogger-turtle.png', [100, 170])
@@ -95,7 +95,6 @@ def main():
 
         # update things that need to be updated
         # move player
-
         keys = pg.key.get_pressed()
         if keys[KEYDOWN]:
             player.down(delta)
@@ -117,6 +116,7 @@ def main():
         screen.blit(bg.image, bg.rect)
 
         player.update(delta)
+        log1.update_log(0.5)
 
         player.draw(screen)
         car1.draw(screen)
@@ -145,7 +145,7 @@ def main():
 
         pg.display.flip()
 
-        delta = clock.tick(60) / 1000  # gives us how many ms the frame has taken
+        delta = clock.tick(fps) / 1000  # gives us how many ms the frame has taken
 
 
 if __name__ == "__main__":
