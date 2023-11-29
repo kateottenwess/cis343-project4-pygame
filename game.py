@@ -143,6 +143,8 @@ def main():
     clock.tick(fps)
     score = 0
 
+
+    # MAIN GAME LOOP
     while running:
         for event in pg.event.get():
             if event.type == pg.QUIT:
@@ -182,15 +184,15 @@ def main():
         '''for fly in flies:            #need this here?
             fly.update(delta)
         '''
+        # creating a sprite group out of fly list for sprite collide fxn call
         fly_group = pygame.sprite.Group(flies)
-
         # Checks for collisions between player and any of the flies, the True removes a fly from the flies group when collision occurs
         hits = pygame.sprite.spritecollide(player, fly_group, True)
+        
         for hit in hits:
             # Increment score when frog eats a fly 
             player.points += player.points
             pass
-    
     
         # draw
         screen.fill([255, 255, 255])

@@ -1,4 +1,5 @@
 from units import Units
+import pygame as pg
 
 
 class Player(Units):
@@ -39,8 +40,16 @@ class Player(Units):
         screen.blit(self.image, self.rect)
 
     def update(self, delta):
-        # TODO is this being blank the reason mr frog isn't moving
-        pass
+        # TODO is this being blank the reason mr frog isn't moving ? Maybe lets test an implmentation...
+        keys = pg.key.get_pressed()
+        if keys[pg.K_LEFT] and self.rect.left > 0:
+            self.rect.x -= 5
+        if keys[pg.K_RIGHT] and self.rect.right < self.rect.width:
+            self.rect.x += 5
+        if keys[pg.K_UP] and self.rect.top > 0:
+            self.rect.y -= 5
+        if keys[pg.K_DOWN] and self.rect.bottom < self.rect.height:
+            self.rect.y += 5
 
     def up(self, delta):
         if self.rect.y > 0:
