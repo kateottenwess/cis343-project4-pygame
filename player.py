@@ -39,6 +39,7 @@ class Player(Units):
         screen.blit(self.image, self.rect)
 
     def update(self, delta):
+        # TODO is this being blank the reason mr frog isn't moving
         pass
 
     def up(self, delta):

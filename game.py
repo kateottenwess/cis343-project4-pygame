@@ -97,13 +97,13 @@ def main():
         # move player
 
         keys = pg.key.get_pressed()
-        if keys[K_s]:
+        if keys[KEYDOWN]:
             player.down(delta)
-        if keys[K_w]:
+        if keys[K_LEFT]:
             player.left(delta)
-        if keys[K_n]:
+        if keys[KEYUP]:
             player.up(delta)
-        if keys[K_e]:
+        if keys[K_RIGHT]:
             player.right(delta)
         if len(flies) == 0:
             print("You've consumed all the flies!")
@@ -137,15 +137,9 @@ def main():
         # redraw lives and score
 
         font.render_to(screen, (10, 10), "Lives: ", RED, None, size=60)
-
-        # TODO change this to str(player.lives) when we figure that out
-
-        font.render_to(screen, (215, 10), str(score), WHITE, None, size=60)
+        font.render_to(screen, (215, 10), str(player.lives), WHITE, None, size=60)
         font.render_to(screen, (350, 10), "Score: ", RED, None, size=60)
-
-        # TODO change this to str(player.score) when we figure that out
-
-        font.render_to(screen, (575, 10), str(score), WHITE, None, size=60)
+        font.render_to(screen, (575, 10), str(player.points), WHITE, None, size=60)
 
         # flip when drawing is done
 
