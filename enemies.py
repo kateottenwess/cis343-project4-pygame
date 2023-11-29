@@ -8,3 +8,7 @@ class Enemies(Units):
         # TODO do we need to set the image things or since its done in units we dont need to?
 
     # TODO create a function to determine if player is hit by enemy
+
+        # Maybe constantly compare player location to enemy locations,
+        # and if they intersect then count it as getting hit? 
+        # Thats my best idea
