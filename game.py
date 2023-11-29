@@ -166,7 +166,7 @@ def main():
         # TODO determine if checks need to be done here if frogger hit car or fell in waater
 
         player.update(delta)
-
+        
         for log in logs:
             log.update_right(0.01)
 
@@ -178,7 +178,10 @@ def main():
 
         for car in fast_cars:
             car.update_left(0.02)
-
+        
+        '''for fly in flies:            #need this here?
+            fly.update_flies(delta)
+        '''
         # draw
 
         screen.fill([255, 255, 255])

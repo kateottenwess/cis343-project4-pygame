@@ -54,3 +54,8 @@ class Units(pg.sprite.Sprite):
         # if center of object goes past left edge, reset to right
         if self.rect.x < -60:
             self.rect.x = 1000
+            
+    '''update function for the flies'''
+    '''def update_flies(self, delta):
+        if( self.)    
+    '''
