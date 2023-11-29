@@ -198,8 +198,6 @@ def main():
         screen.fill([255, 255, 255])
         screen.blit(bg.image, bg.rect)
 
-        player.draw(screen)
-
         for fly in flies:
             fly.draw(screen)
 
@@ -221,6 +219,8 @@ def main():
         font.render_to(screen, (215, 10), str(player.lives), WHITE, None, size=60)
         font.render_to(screen, (350, 10), "Score: ", RED, None, size=60)
         font.render_to(screen, (575, 10), str(player.points), WHITE, None, size=60)
+
+        player.draw(screen)
 
         # flip when drawing is done
 

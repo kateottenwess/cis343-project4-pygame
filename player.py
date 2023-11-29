@@ -44,11 +44,11 @@ class Player(Units):
         keys = pg.key.get_pressed()
         if keys[pg.K_LEFT] and self.rect.left > 0:
             self.rect.x -= 5
-        if keys[pg.K_RIGHT] and self.rect.right < self.rect.width:
+        if keys[pg.K_RIGHT] and self.rect.right < 960:
             self.rect.x += 5
         if keys[pg.K_UP] and self.rect.top > 0:
             self.rect.y -= 5
-        if keys[pg.K_DOWN] and self.rect.bottom < self.rect.height:
+        if keys[pg.K_DOWN] and self.rect.bottom < 720:
             self.rect.y += 5
 
     def up(self, delta):
