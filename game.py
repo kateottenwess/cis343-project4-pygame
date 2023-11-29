@@ -109,26 +109,26 @@ def main():
 
     car1 = Enemies('frogger-car1.png', [100, 610])
     car2 = Enemies('frogger-car1.png', [450, 610])
-    car3 = Enemies('frogger-car2.png', [860, 565])
-    car4 = Enemies('frogger-car2.png', [300, 565])
-    car5 = Enemies('frogger-car1.png', [0, 475])
-    car6 = Enemies('frogger-car1.png', [600, 475])
+    car3 = Enemies('frogger-car1.png', [0, 475])
+    car4= Enemies('frogger-car1.png', [600, 475])
 
     slow_cars.append(car1)
     slow_cars.append(car2)
     slow_cars.append(car3)
     slow_cars.append(car4)
-    slow_cars.append(car5)
-    slow_cars.append(car6)
 
     # set up faster cars
     fast_cars = []
 
+    car5 = Enemies('frogger-car2.png', [860, 565])
+    car6 = Enemies('frogger-car2.png', [300, 565])
     car7 = Enemies('frogger-car3.png', [50, 520])
     car8 = Enemies('frogger-car3.png', [650, 520])
     car9 = Enemies('frogger-car2.png', [950, 425])
     car10 = Enemies('frogger-car2.png', [425, 425])
 
+    fast_cars.append(car5)
+    fast_cars.append(car6)
     fast_cars.append(car7)
     fast_cars.append(car8)
     fast_cars.append(car9)
