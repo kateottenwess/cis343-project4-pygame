@@ -1,4 +1,3 @@
-import pygame
 import pygame as pg
 from player import Player
 from enemies import Enemies
@@ -9,11 +8,11 @@ import os
 import pygame.freetype
 
 
-class Game(pygame.sprite.Sprite):
+class Game(pg.sprite.Sprite):
     def __init__(self, image_file, location):
         value = 1
-        pygame.sprite.Sprite.__init__(self)
-        self.image = pygame.image.load(image_file)
+        pg.sprite.Sprite.__init__(self)
+        self.image = pg.image.load(image_file)
         self.rect = self.image.get_rect()
         self.rect.left, self.rect.top = location
         # TODO create properties and setters?
@@ -21,7 +20,7 @@ class Game(pygame.sprite.Sprite):
 
 # TODO is this supposed to be in class
 def main():
-    # start pygame
+    # start pg
     pg.init()
 
     # get screen object
@@ -58,7 +57,7 @@ def main():
     flies.append(fly6)
     flies.append(fly7)
     
-    fly_group = pygame.sprite.Group(flies)
+    fly_group = pg.sprite.Group(flies)
 
     # set up logs TODO is there a better way to do this
     logs = []
@@ -163,7 +162,8 @@ def main():
             player.up(delta)
         if keys[K_RIGHT]:
             player.right(delta)
-        if len(fly_group) == 0:     # changed to fly sprite group for testing purposes
+        if len(fly_group) == 0:     
+            # Add a You've won screen?
             print("You've consumed all the flies!")
             return
 
@@ -182,22 +182,16 @@ def main():
 
         for car in fast_cars:
             car.update_left(0.02)
-        
-        '''for fly in flies:            #need this here?
-            fly.update(delta)
-        '''
+
+
         # creating a sprite group out of fly list for sprite collide fxn call
-        #fly_group = pygame.sprite.Group(flies)
+        #fly_group = pg.sprite.Group(flies)
         # Checks for collisions between player and any of the flies, the True removes a fly from the flies group when collision occurs
-        hits = pygame.sprite.spritecollide(player, fly_group, True)
+        hits = pg.sprite.spritecollide(player, fly_group, True)
         
         for hit in hits:
             # Increment score when frog eats a fly 
             player.points += 1
-            '''curr_loc = [player.rect.x , player.rect.x]
-            for flie in
-            flies.remove(curr_loc)   '''   # right now it just removes the first from the list,
-                                        # needs to remove at the current location
 
         # draw
         screen.fill([255, 255, 255])
