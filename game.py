@@ -57,6 +57,8 @@ def main():
     flies.append(fly5)
     flies.append(fly6)
     flies.append(fly7)
+    
+    fly_group = pygame.sprite.Group(flies)
 
     # set up logs TODO is there a better way to do this
     logs = []
@@ -161,7 +163,7 @@ def main():
             player.up(delta)
         if keys[K_RIGHT]:
             player.right(delta)
-        if len(flies) == 0:
+        if len(fly_group) == 0:     # changed to fly sprite group for testing purposes
             print("You've consumed all the flies!")
             return
 
@@ -185,22 +187,23 @@ def main():
             fly.update(delta)
         '''
         # creating a sprite group out of fly list for sprite collide fxn call
-        fly_group = pygame.sprite.Group(flies)
+        #fly_group = pygame.sprite.Group(flies)
         # Checks for collisions between player and any of the flies, the True removes a fly from the flies group when collision occurs
         hits = pygame.sprite.spritecollide(player, fly_group, True)
         
         for hit in hits:
             # Increment score when frog eats a fly 
             player.points += 1
-            curr_loc = [player.rect.x , player.rect.x]
-            flies.remove(curr_loc)      # right now it just removes the first from the list,
+            '''curr_loc = [player.rect.x , player.rect.x]
+            for flie in
+            flies.remove(curr_loc)   '''   # right now it just removes the first from the list,
                                         # needs to remove at the current location
 
         # draw
         screen.fill([255, 255, 255])
         screen.blit(bg.image, bg.rect)
 
-        for fly in flies:
+        for fly in fly_group:   #changed to group
             fly.draw(screen)
 
         for log in logs:
