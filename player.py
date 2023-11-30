@@ -51,6 +51,10 @@ class Player(Units):
         if keys[pg.K_DOWN] and self.rect.bottom < 720:
             self.rect.y += 5
 
+    def reset(self):
+        self.rect.x = 460
+        self.rect.y = 700
+
     def up(self, delta):
         if self.rect.y > 0:
             self.rect.y -= 120 * delta

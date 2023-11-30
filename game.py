@@ -57,7 +57,7 @@ def main():
     flies.append(fly5)
     flies.append(fly6)
     flies.append(fly7)
-    
+
     fly_group = pygame.sprite.Group(flies)
 
     # set up logs TODO is there a better way to do this
@@ -112,7 +112,7 @@ def main():
     car1 = Enemies('frogger-car1.png', [100, 610])
     car2 = Enemies('frogger-car1.png', [450, 610])
     car3 = Enemies('frogger-car1.png', [0, 475])
-    car4= Enemies('frogger-car1.png', [600, 475])
+    car4 = Enemies('frogger-car1.png', [600, 475])
 
     slow_cars.append(car1)
     slow_cars.append(car2)
@@ -145,7 +145,6 @@ def main():
     clock.tick(fps)
     score = 0
 
-
     # MAIN GAME LOOP
     while running:
         for event in pg.event.get():
@@ -163,14 +162,14 @@ def main():
             player.up(delta)
         if keys[K_RIGHT]:
             player.right(delta)
-        if len(fly_group) == 0:     # changed to fly sprite group for testing purposes
+        if len(fly_group) == 0:  # changed to fly sprite group for testing purposes
             print("You've consumed all the flies!")
             return
 
         # TODO determine if checks need to be done here if frogger hit car or fell in waater
 
         player.update(delta)
-        
+
         for log in logs:
             log.update_right(0.01)
 
@@ -182,28 +181,29 @@ def main():
 
         for car in fast_cars:
             car.update_left(0.02)
-        
+
         '''for fly in flies:            #need this here?
             fly.update(delta)
         '''
         # creating a sprite group out of fly list for sprite collide fxn call
-        #fly_group = pygame.sprite.Group(flies)
+        # fly_group = pygame.sprite.Group(flies)
         # Checks for collisions between player and any of the flies, the True removes a fly from the flies group when collision occurs
         hits = pygame.sprite.spritecollide(player, fly_group, True)
-        
+
         for hit in hits:
             # Increment score when frog eats a fly 
-            player.points += 1
+            player.points += 100
+            player.reset()
             '''curr_loc = [player.rect.x , player.rect.x]
             for flie in
-            flies.remove(curr_loc)   '''   # right now it just removes the first from the list,
-                                        # needs to remove at the current location
+            flies.remove(curr_loc)   '''  # right now it just removes the first from the list,
+            # needs to remove at the current location
 
         # draw
         screen.fill([255, 255, 255])
         screen.blit(bg.image, bg.rect)
 
-        for fly in fly_group:   #changed to group
+        for fly in fly_group:  # changed to group
             fly.draw(screen)
 
         for log in logs:
