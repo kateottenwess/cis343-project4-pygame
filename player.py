@@ -30,11 +30,12 @@ class Player(Units):
     @lives.setter
     def lives(self, lives):
         if not lives:
-            raise ValueError("lives cannot be blank.")
+            raise ValueError("YOU LOST.")
         if not isinstance(lives, int):
             raise ValueError("Name must be an int.")
         if lives < 0 or lives > 3:
             raise ValueError("Player must have within 0 and 3 lives")
+        self.__lives = lives
 
     def draw(self, screen):
         screen.blit(self.image, self.rect)

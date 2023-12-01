@@ -203,13 +203,23 @@ def main():
         
         for hit in slow_hits:
             # Decrement player lives when they get hit
-            player.lives -= 1
-            player.reset()   
+            if player.lives > 0:
+                player.lives -= 1
+                player.reset()  
+            else:
+                # Add a You've lost screen?
+                print("DEAD.....You lost!")
+                return 
             
         for hit in fast_hits:
             # Decrement player lives when they get hit
-            player.lives -= 1
-            player.reset()    
+            if player.lives > 0:
+                player.lives -= 1
+                player.reset() 
+            else:
+                # Add a You've lost screen?
+                print("DEAD.....You lost!")
+                return
             
         # draw
         screen.fill([255, 255, 255])
