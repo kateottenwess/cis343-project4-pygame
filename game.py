@@ -57,7 +57,8 @@ def main():
     flies.append(fly6)
     flies.append(fly7)
     
-    fly_group = pg.sprite.Group(flies)
+    # creating a sprite group out of fly list for sprite collide fxn call
+    fly_group = pg.sprite.Group(flies)  
 
     # set up logs TODO is there a better way to do this
     logs = []
@@ -111,12 +112,15 @@ def main():
     car1 = Enemies('frogger-car1.png', [100, 610])
     car2 = Enemies('frogger-car1.png', [450, 610])
     car3 = Enemies('frogger-car1.png', [0, 475])
-    car4= Enemies('frogger-car1.png', [600, 475])
+    car4 = Enemies('frogger-car1.png', [600, 475])
 
     slow_cars.append(car1)
     slow_cars.append(car2)
     slow_cars.append(car3)
     slow_cars.append(car4)
+    
+    # creating a sprite group out of slow cars for sprite collide fxn call
+    slow_car_group = pg.sprite.Group(slow_cars)  
 
     # set up faster cars
     fast_cars = []
@@ -135,6 +139,9 @@ def main():
     fast_cars.append(car9)
     fast_cars.append(car10)
 
+    # creating a sprite group out of slow cars for sprite collide fxn call
+    fast_car_group = pg.sprite.Group(fast_cars)  
+
     # Startup the main game loop
     running = True
     delta = 0
@@ -143,7 +150,6 @@ def main():
     clock = pg.time.Clock()
     clock.tick(fps)
     score = 0
-
 
     # MAIN GAME LOOP
     while running:
@@ -170,7 +176,7 @@ def main():
         # TODO determine if checks need to be done here if frogger hit car or fell in waater
 
         player.update(delta)
-        
+
         for log in logs:
             log.update_right(0.01)
 
@@ -183,21 +189,33 @@ def main():
         for car in fast_cars:
             car.update_left(0.02)
 
-
-        # creating a sprite group out of fly list for sprite collide fxn call
-        #fly_group = pg.sprite.Group(flies)
         # Checks for collisions between player and any of the flies, the True removes a fly from the flies group when collision occurs
-        hits = pg.sprite.spritecollide(player, fly_group, True)
+        fly_hits = pg.sprite.spritecollide(player, fly_group, True)
         
-        for hit in hits:
+        for hit in fly_hits:
             # Increment score when frog eats a fly 
-            player.points += 1
-
+            player.points += 100
+            player.reset()
+         
+        # Checks for collisions between player and any of the cars
+        slow_hits = pg.sprite.spritecollide(player, slow_car_group, False)
+        fast_hits = pg.sprite.spritecollide(player, fast_car_group, False)
+        
+        for hit in slow_hits:
+            # Decrement player lives when they get hit
+            player.lives -= 1
+            player.reset()   
+            
+        for hit in fast_hits:
+            # Decrement player lives when they get hit
+            player.lives -= 1
+            player.reset()    
+            
         # draw
         screen.fill([255, 255, 255])
         screen.blit(bg.image, bg.rect)
 
-        for fly in fly_group:   #changed to group
+        for fly in fly_group:  # changed to group
             fly.draw(screen)
 
         for log in logs:

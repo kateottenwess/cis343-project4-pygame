@@ -9,7 +9,7 @@ class Utilities(Units):
     # TODO create a function to determine if player is on utility
 
     # TODO do we need a function here for fly logic
-    
+
     # update function for the flies
     def update(self, delta):
         pass
