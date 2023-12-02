@@ -11,5 +11,5 @@ class Utilities(Units):
     # TODO do we need a function here for fly logic
 
     # update function for the flies
-    def update(self, delta):
+    def update_fly(self, delta):
         pass
