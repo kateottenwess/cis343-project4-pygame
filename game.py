@@ -9,6 +9,7 @@ import pygame.freetype
 
 
 class Game(pg.sprite.Sprite):
+    
     def __init__(self, image_file, location):
         value = 1
         pg.sprite.Sprite.__init__(self)
@@ -18,9 +19,32 @@ class Game(pg.sprite.Sprite):
         
         # TODO create properties and setters?
         
-        
-        
+        # creating a sprite group out of flies for sprite collide fxn call
+        self.fly_group = self.init_flies(); 
 
+    def init_flies(self):
+        # set up flies TODO is there a better way to do this
+        flies = []
+
+        fly1 = Utilities('frogger-fly.png', [75, 110])
+        fly2 = Utilities('frogger-fly.png', [210, 110])
+        fly3 = Utilities('frogger-fly.png', [345, 110])
+        fly4 = Utilities('frogger-fly.png', [480, 110])
+        fly5 = Utilities('frogger-fly.png', [620, 110])
+        fly6 = Utilities('frogger-fly.png', [760, 110])
+        fly7 = Utilities('frogger-fly.png', [895, 110])
+
+        flies.append(fly1)
+        flies.append(fly2)
+        flies.append(fly3)
+        flies.append(fly4)
+        flies.append(fly5)
+        flies.append(fly6)
+        flies.append(fly7)
+        
+        fly_group = pg.sprite.Group(flies)  
+        return fly_group
+        
 
 # TODO is this supposed to be in class
 def main():
@@ -41,28 +65,6 @@ def main():
 
     # create player object
     player = Player(0, 3)
-
-    # set up flies TODO is there a better way to do this
-    flies = []
-
-    fly1 = Utilities('frogger-fly.png', [75, 110])
-    fly2 = Utilities('frogger-fly.png', [210, 110])
-    fly3 = Utilities('frogger-fly.png', [345, 110])
-    fly4 = Utilities('frogger-fly.png', [480, 110])
-    fly5 = Utilities('frogger-fly.png', [620, 110])
-    fly6 = Utilities('frogger-fly.png', [760, 110])
-    fly7 = Utilities('frogger-fly.png', [895, 110])
-
-    flies.append(fly1)
-    flies.append(fly2)
-    flies.append(fly3)
-    flies.append(fly4)
-    flies.append(fly5)
-    flies.append(fly6)
-    flies.append(fly7)
-    
-    # creating a sprite group out of flies for sprite collide fxn call
-    fly_group = pg.sprite.Group(flies)  
 
     # set up logs TODO is there a better way to do this
     logs = []
@@ -178,7 +180,7 @@ def main():
             player.up(delta)
         if keys[K_RIGHT]:
             player.right(delta)
-        if len(fly_group) == 0:     
+        if len(bg.fly_group) == 0:     
             # Add a You've won screen?
             print("You've consumed all the flies!")
             return
@@ -200,7 +202,7 @@ def main():
             car.update_left(0.0211)
 
         # Checks for collisions between player and any of the flies, the True removes a fly from the flies group when collision occurs
-        fly_hits = pg.sprite.spritecollide(player, fly_group, True)
+        fly_hits = pg.sprite.spritecollide(player, bg.fly_group, True)
         
         for hit in fly_hits:
             # Increment score when frog eats a fly 
@@ -236,20 +238,19 @@ def main():
         log_hits = pygame.sprite.spritecollide(player, log_group, False)
         for log in log_hits:
             # Update frog's position based on the log's movement
-            player.rect.x = log.rect.x   # Adjust this based on your specific implementation
-        
+            player.rect.x = log.rect.x 
 
         # Check for collisions between frog and turtles
         turtle_hits = pygame.sprite.spritecollide(player, turtle_group, False)
         for turtle in turtle_hits:
             # Update frog's position based on the turtle's movement
-            player.rect.x = turtle.rect.x # Adjust this based on your specific implementation
-       
+            player.rect.x = turtle.rect.x 
+            
         # draw
         screen.fill([255, 255, 255])
         screen.blit(bg.image, bg.rect)
 
-        for fly in fly_group:  # changed to group
+        for fly in bg.fly_group:  # changed to group
             fly.draw(screen)
 
         for log in logs:
@@ -281,11 +282,11 @@ def main():
         
     '''
     # Check for collisions between frog and river (if falling into the river)
-    if player.rect.bottom < river_surface_rect.top:         # find corridinates
+    if player.rect.bottom < river_surface_rect.top:         # find cooridinates
         # Frog fell into the river
-        # Implement logic to decrement lives, reset position, etc.
         player.rect.center = (player.rect.width // 2, player.rect.height - 50)
-        # Decrement lives or handle other game over logic
+        player.lives -= 1
+        player.reset()  
     ''' 
 
 
