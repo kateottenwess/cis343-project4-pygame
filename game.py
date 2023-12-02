@@ -237,14 +237,14 @@ def main():
         for log in log_hits:
             # Update frog's position based on the log's movement
             player.rect.x += 0.01  # Adjust this based on your specific implementation
-            player.rect.y = log.rect.y  # Keep the frog aligned with the log's y-coordinate
+        #    player.rect.y = log.rect.y  # Keep the frog aligned with the log's y-coordinate
 
         # Check for collisions between frog and turtles
         turtle_hits = pygame.sprite.spritecollide(player, turtle_group, False)
         for turtle in turtle_hits:
             # Update frog's position based on the turtle's movement
             player.rect.x += 0.01  # Adjust this based on your specific implementation
-            player.rect.y = turtle.rect.y  # Keep the frog aligned with the turtle's y-coordinate
+    #        player.rect.y = turtle.rect.y  # Keep the frog aligned with the turtle's y-coordinate
        
         # draw
         screen.fill([255, 255, 255])
