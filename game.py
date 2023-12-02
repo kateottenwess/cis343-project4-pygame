@@ -20,8 +20,8 @@ class Game(pg.sprite.Sprite):
         # TODO create properties and setters?
         
         # creating a sprite group out of flies for sprite collide fxn call
-        self.fly_group = self.init_flies(); 
-
+        self.fly_group = self.init_flies() 
+    
     def init_flies(self):
         # set up flies TODO is there a better way to do this
         flies = []
@@ -44,9 +44,8 @@ class Game(pg.sprite.Sprite):
         
         fly_group = pg.sprite.Group(flies)  
         return fly_group
-        
 
-# TODO is this supposed to be in class
+
 def main():
     # start pg
     pg.init()
@@ -232,19 +231,27 @@ def main():
                 # Add a You've lost screen?
                 print("DEAD.....You lost!")
                 return
-        # Checking for collisions with logs or turtles to ride them -------------------------------------------
             
-        # Check for collisions between frog and logs
-        log_hits = pygame.sprite.spritecollide(player, log_group, False)
-        for log in log_hits:
-            # Update frog's position based on the log's movement
-            player.rect.x = log.rect.x 
+        # Check for collisions between frog and river (if falling into the river)
+        if 330 >= player.rect.bottom >= 210:
+            # Check for collisions between frog and logs
+            log_hits = pygame.sprite.spritecollide(player, log_group, False)
+            # Check for collisions between frog and turtles
+            turtle_hits = pygame.sprite.spritecollide(player, turtle_group, False)
+            
+            if log_hits or turtle_hits:  # Use 'or' to check if either logs or turtles are hit
+                # Update frog's position based on the first log or turtle hit (if any)
+                if log_hits:
+                    player.rect.x = log_hits[0].rect.x
+                elif turtle_hits:
+                    player.rect.x = turtle_hits[0].rect.x
+            else:
+                # Frog fell into the river without hitting logs or turtles
+                player.lives -= 1
+                player.reset()
 
-        # Check for collisions between frog and turtles
-        turtle_hits = pygame.sprite.spritecollide(player, turtle_group, False)
-        for turtle in turtle_hits:
-            # Update frog's position based on the turtle's movement
-            player.rect.x = turtle.rect.x 
+                        
+        # Checking for collisions with logs or turtles to ride them -------------------------------------------
             
         # draw
         screen.fill([255, 255, 255])
@@ -264,6 +271,14 @@ def main():
 
         for car in slow_cars:
             car.draw(screen)
+            
+        for log in log_group:
+            if player.rect.colliderect(log.rect):
+                player.rect.x = log.rect.x
+
+        for turtle in turtle_group:
+            if player.rect.colliderect(turtle.rect):
+                player.rect.x = turtle.rect.x
 
         # redraw lives and score
 
@@ -280,16 +295,8 @@ def main():
 
         delta = clock.tick(fps) / 1000  # gives us how many ms the frame has taken
         
-    '''
-    # Check for collisions between frog and river (if falling into the river)
-    if player.rect.bottom < river_surface_rect.top:         # find cooridinates
-        # Frog fell into the river
-        player.rect.center = (player.rect.width // 2, player.rect.height - 50)
-        player.lives -= 1
-        player.reset()  
-    ''' 
 
-
+    
 if __name__ == "__main__":
     main()
     pg.quit()
