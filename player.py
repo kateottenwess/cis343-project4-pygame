@@ -5,7 +5,7 @@ import pygame as pg
 class Player(Units):
     def __init__(self, points, lives):
         super(Player, self).__init__([460, 700], 'frogger-small.png')
-        self.__points = 0
+        self.__points = points
         self.__lives = lives
         # TODO do we need to set the image things or since its done in units we dont need to?
 
