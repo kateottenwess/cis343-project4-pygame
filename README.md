@@ -17,4 +17,28 @@ Units class implements all common logic between Frogger, enemies, and utilities 
 Game class includes initial set up of the game and our main defintion.
 
 
+ASSETS
+Fly image: https://tcrf.net/File:Frogger1997-june2psx-PinkFly.png#filehistory
+- changes to image: image downsized to 48 x 35 pixels with background removed
+- Assest available under Atribution 3.0 Unported
+
+Log image: https://openclipart.org/detail/218084/pixel-log-side
+- Asset has no copyright under CC0 1.0 Universal
+
+Frog image: https://www.vhv.rs/viewpic/TTJwmmm_8-bit-frog-frogger-hd-png-download/
+- Asset available for personal use only (which this is)
+
+Turtle image: https://www.pixilart.com/tuekeleven
+- Asset has no copyright according to https://www.pixilart.com/terms
+
+Red Car image:
+
+Blue car image:
+
+Pink car image:
+
+Background image:
+
+Font:
+
 
