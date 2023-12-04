@@ -1,35 +1,33 @@
 # cis343-project4-pygame
 
-Simple Frogger implementation in Python. This only implements the first level of Frogger (i.e frogger does not get new enemies if he completes a level).
-Froggers goal in this version is to collect all 7 flies. He has 3 lives to try and achieve this. 
-Specifics of Frogger removed from this version:
--Turtles do not sink, and therefor will not be considered an enemy
--Flies do not appear randomly but instead exist constantly unless frogger collects it
+Simple game in Python. Objective of the game is for the player to collect all 7 stars. In order to get to the stars, player must cross in front of cars without getting hit, and cross a river on logs and turtles. The player will have 3 lives in order to achieve this. As an added feature, the player gets to choose what animal to play as (a cat, dog, or bird).
 
-Player class implements all logic for Frogger. It inherits from the Units class.
+Player class implements all logic for the player (points). It inherits from the Units class.
 
 Enemies class implements all logic for the enemies (cars). It inherits from the Units class.
 
-Utilities class implements logic for objects frogger needs to use to win (flies, logs, turtles). It also inherits fron the Units class.
+Utilities class implements logic for objects player needs to use to win (stars, logs, turtles). It also inherits fron the Units class.
 
-Units class implements all common logic between Frogger, enemies, and utilities (moving, drawing, etc).
+Units class implements all common logic between player, enemies, and utilities (moving, drawing, etc).
 
 Game class includes initial set up of the game and our main defintion.
 
-
 ASSETS
-Fly image: https://tcrf.net/File:Frogger1997-june2psx-PinkFly.png#filehistory
-- changes to image: image downsized to 48 x 35 pixels with background removed
-- Assest available under Atribution 3.0 Unported
 
 Log image: https://openclipart.org/detail/218084/pixel-log-side
 - Asset has no copyright under CC0 1.0 Universal
 
-Frog image: https://www.vhv.rs/viewpic/TTJwmmm_8-bit-frog-frogger-hd-png-download/
-- Asset available for personal use only (which this is)
+Below images (turtle, cat, dog, and bird) are all sourced from Pixilart.com, which states here (https://www.pixilart.com/terms) has no copyrighting on the art unless otherwise stated. ALl of the below images did not have an additional copyright statement.
 
 Turtle image: https://www.pixilart.com/tuekeleven
-- Asset has no copyright according to https://www.pixilart.com/terms
+
+Cat image: https://www.pixilart.com/art/32-x-32-cat-42e019c236fe77a
+
+Dog image: https://www.pixilart.com/art/free-profile-picture-sr2ecb018a49aaws3?ft=tags&ft_id=
+
+Bird image: https://www.pixilart.com/art/pelicano-sr2b8864418e2db?ft=tags&ft_id=
+
+Star image: Hand drawn by Kate
 
 Red Car image:
 
