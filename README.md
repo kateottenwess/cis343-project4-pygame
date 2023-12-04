@@ -17,7 +17,7 @@ ASSETS
 Log image: https://openclipart.org/detail/218084/pixel-log-side
 - Asset has no copyright under CC0 1.0 Universal
 
-Below images (turtle, cat, dog, and bird) are all sourced from Pixilart.com, which states here (https://www.pixilart.com/terms) has no copyrighting on the art unless otherwise stated. ALl of the below images did not have an additional copyright statement.
+Below images (turtle, cat, dog, and bird) are all sourced from Pixilart.com, which states here (https://www.pixilart.com/terms) has no copyrighting on the art unless otherwise stated. All of the below images did not have an additional copyright statement.
 
 Turtle image: https://www.pixilart.com/tuekeleven
 
