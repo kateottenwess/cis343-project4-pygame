@@ -22,7 +22,7 @@ class Player(Units):
         if not points:
             raise ValueError("Points cannot be blank.")
         if not isinstance(points, int):
-            raise ValueError("Name must be an int.")
+            raise ValueError("Points must be an int.")
         if points < 0:
             raise ValueError("Points can not be negative")
         self.__points = points
@@ -32,7 +32,7 @@ class Player(Units):
         if not lives:
             raise ValueError("YOU LOST.")
         if not isinstance(lives, int):
-            raise ValueError("Name must be an int.")
+            raise ValueError("Lives must be an int.")
         if lives < 0 or lives > 3:
             raise ValueError("Player must have within 0 and 3 lives")
         self.__lives = lives

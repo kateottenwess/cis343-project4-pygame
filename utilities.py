@@ -40,18 +40,18 @@ class Utilities(Units):
         # set up turtles
         turtles = []
 
-        turtle1 = Utilities('frogger-turtle.png', [100, 275])
-        turtle2 = Utilities('frogger-turtle.png', [150, 275])
-        turtle3 = Utilities('frogger-turtle.png', [200, 275])
-        turtle4 = Utilities('frogger-turtle.png', [500, 275])
-        turtle5 = Utilities('frogger-turtle.png', [550, 275])
-        turtle6 = Utilities('frogger-turtle.png', [600, 275])
-        turtle7 = Utilities('frogger-turtle.png', [300, 170])
-        turtle8 = Utilities('frogger-turtle.png', [350, 170])
-        turtle9 = Utilities('frogger-turtle.png', [400, 170])
-        turtle10 = Utilities('frogger-turtle.png', [800, 170])
-        turtle11 = Utilities('frogger-turtle.png', [850, 170])
-        turtle12 = Utilities('frogger-turtle.png', [900, 170])
+        turtle1 = Utilities('turtle.png', [100, 275])
+        turtle2 = Utilities('turtle.png', [150, 275])
+        turtle3 = Utilities('turtle.png', [200, 275])
+        turtle4 = Utilities('turtle.png', [500, 275])
+        turtle5 = Utilities('turtle.png', [550, 275])
+        turtle6 = Utilities('turtle.png', [600, 275])
+        turtle7 = Utilities('turtle.png', [300, 170])
+        turtle8 = Utilities('turtle.png', [350, 170])
+        turtle9 = Utilities('turtle.png', [400, 170])
+        turtle10 = Utilities('turtle.png', [800, 170])
+        turtle11 = Utilities('turtle.png', [850, 170])
+        turtle12 = Utilities('turtle.png', [900, 170])
 
         turtles.append(turtle1)
         turtles.append(turtle2)
@@ -74,12 +74,12 @@ class Utilities(Units):
     def init_logs():
         logs = []
 
-        log1 = Utilities('frogger-log.png', [-100, 330])
-        log2 = Utilities('frogger-log.png', [350, 330])
-        log3 = Utilities('frogger-log.png', [650, 330])
-        log4 = Utilities('frogger-log.png', [150, 220])
-        log5 = Utilities('frogger-log.png', [450, 220])
-        log6 = Utilities('frogger-log.png', [850, 220])
+        log1 = Utilities('log.png', [-100, 330])
+        log2 = Utilities('log.png', [350, 330])
+        log3 = Utilities('log.png', [650, 330])
+        log4 = Utilities('log.png', [150, 220])
+        log5 = Utilities('log.png', [450, 220])
+        log6 = Utilities('log.png', [850, 220])
 
         logs.append(log1)
         logs.append(log2)

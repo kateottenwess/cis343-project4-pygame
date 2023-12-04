@@ -84,7 +84,7 @@ def main():
 
     # get screen object
     screen = pg.display.set_mode((960, 720))
-    bg = Game('./assets/frogger-background.png', [0, 0])
+    bg = Game('./assets/background.png', [0, 0])
 
     # create enemies and utilities
     stars_group = Utilities.init_stars()
@@ -116,10 +116,10 @@ def main():
             player.right(delta)
         if len(stars_group) == 0:
             # Add a You've won screen?
-            print("You've consumed all the flies!")
+            print("You've collected all the stars!")
             return
 
-        # TODO determine if checks need to be done here if frogger hit car or fell in waater
+        # TODO determine if checks need to be done here if frogger hit car or fell in water
 
         player.update(delta)
 

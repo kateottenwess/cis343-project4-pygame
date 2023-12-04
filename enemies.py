@@ -8,19 +8,16 @@ class Enemies(Units):
 
     # TODO create a function to determine if player is hit by enemy
 
-    # Maybe constantly compare player location to enemy locations,
-    # and if they intersect then count it as getting hit?
-    # Thats my best idea
     @staticmethod
     def init_fast_cars():
         fast_cars = []
 
-        car5 = Enemies('frogger-car2.png', [860, 565])
-        car6 = Enemies('frogger-car2.png', [300, 565])
-        car7 = Enemies('frogger-car3.png', [50, 520])
-        car8 = Enemies('frogger-car3.png', [650, 520])
-        car9 = Enemies('frogger-car2.png', [950, 425])
-        car10 = Enemies('frogger-car2.png', [425, 425])
+        car5 = Enemies('car2.png', [860, 565])
+        car6 = Enemies('car2.png', [300, 565])
+        car7 = Enemies('car3.png', [50, 520])
+        car8 = Enemies('car3.png', [650, 520])
+        car9 = Enemies('car2.png', [950, 425])
+        car10 = Enemies('car2.png', [425, 425])
 
         fast_cars.append(car5)
         fast_cars.append(car6)
@@ -38,10 +35,10 @@ class Enemies(Units):
         # set up slower cars
         slow_cars = []
 
-        car1 = Enemies('frogger-car1.png', [100, 610])
-        car2 = Enemies('frogger-car1.png', [450, 610])
-        car3 = Enemies('frogger-car1.png', [0, 475])
-        car4 = Enemies('frogger-car1.png', [600, 475])
+        car1 = Enemies('car1.png', [100, 610])
+        car2 = Enemies('car1.png', [450, 610])
+        car3 = Enemies('car1.png', [0, 475])
+        car4 = Enemies('car1.png', [600, 475])
 
         slow_cars.append(car1)
         slow_cars.append(car2)
