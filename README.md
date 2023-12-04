@@ -29,14 +29,19 @@ Bird image: https://www.pixilart.com/art/pelicano-sr2b8864418e2db?ft=tags&ft_id=
 
 Star image: Hand drawn by Kate
 
-Red Car image:
+Red Car image: https://www.pngwing.com/en/free-png-noukg
+- listed available for non-commercial use 
 
-Blue car image:
+Blue car image: https://www.pngwing.com/en/free-png-zvoaf
+- listed available for non-commercial use
 
-Pink car image:
+Green car image: https://www.pngwing.com/en/free-png-nnnka
+- listed available for non-commercial use
 
-Background image:
+Background image: https://imgur.com/gallery/vEccR
+- according to https://imgur.com/tos we have the right to use images from the site for personal use
 
-Font:
+Font: https://fonts.google.com/specimen/Potta+One
+- license listed uner SIL Open Font License, Version 1.1
 
 
