@@ -12,28 +12,28 @@ class Utilities(Units):
         pass
 
     @staticmethod
-    def init_flies():
-        # set up flies TODO is there a better way to do this
-        flies = []
+    def init_stars():
 
-        fly1 = Utilities('frogger-fly.png', [75, 110])
-        fly2 = Utilities('frogger-fly.png', [210, 110])
-        fly3 = Utilities('frogger-fly.png', [345, 110])
-        fly4 = Utilities('frogger-fly.png', [480, 110])
-        fly5 = Utilities('frogger-fly.png', [620, 110])
-        fly6 = Utilities('frogger-fly.png', [760, 110])
-        fly7 = Utilities('frogger-fly.png', [895, 110])
+        stars = []
 
-        flies.append(fly1)
-        flies.append(fly2)
-        flies.append(fly3)
-        flies.append(fly4)
-        flies.append(fly5)
-        flies.append(fly6)
-        flies.append(fly7)
+        star1 = Utilities('star.png', [75, 110])
+        star2 = Utilities('star.png', [210, 110])
+        star3 = Utilities('star.png', [345, 110])
+        star4 = Utilities('star.png', [480, 110])
+        star5 = Utilities('star.png', [620, 110])
+        star6 = Utilities('star.png', [760, 110])
+        star7 = Utilities('star.png', [895, 110])
 
-        fly_group = pg.sprite.Group(flies)
-        return fly_group
+        stars.append(star1)
+        stars.append(star2)
+        stars.append(star3)
+        stars.append(star4)
+        stars.append(star5)
+        stars.append(star6)
+        stars.append(star7)
+
+        star_group = pg.sprite.Group(stars)
+        return star_group
 
     @staticmethod
     def init_turtles():

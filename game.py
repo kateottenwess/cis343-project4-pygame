@@ -15,14 +15,33 @@ class Game(pg.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.left, self.rect.top = location
 
+    @staticmethod
+    def start_display(screen, font, color):
+        screen.fill((171, 221, 246))
+
+        font.render_to(screen, (10, 10), "Choose your Character", color, None, size=60)
+        image_cat = pg.image.load(os.path.join('assets', 'cat.png')).convert_alpha()
+        rect_cat = image_cat.get_rect()
+        rect_cat.x, rect_cat.y = 150, 300
+        image_dog = pg.image.load(os.path.join('assets', 'dog.png')).convert_alpha()
+        rect_dog = image_dog.get_rect()
+        rect_dog.x, rect_dog.y = 400, 300
+        image_bird = pg.image.load(os.path.join('assets', 'bird.png')).convert_alpha()
+        rect_bird = image_bird.get_rect()
+        rect_bird.x, rect_bird.y = 650, 300
+        screen.blit(image_cat, rect_cat)
+        screen.blit(image_dog, rect_dog)
+        screen.blit(image_bird, rect_bird)
+        font.render_to(screen, (60, 400), "Press a for Cat          Press s for Dog          Press d for Bird", color,
+                       None,
+                       size=20)
+
 
 def main():
     # start pg
     pg.init()
 
-    # get screen object
     screen = pg.display.set_mode((960, 720))
-    bg = Game('./assets/frogger-background.png', [0, 0])
 
     # Get font setup
     pg.font.init()
@@ -32,11 +51,43 @@ def main():
     WHITE = (254, 254, 254)
     RED = (246, 46, 46)
 
+    Game.start_display(screen, font, WHITE)
+
+    fps = 60
+    clock = pg.time.Clock()
+    clock.tick(fps)
+
+    pg.display.flip()
+    image = ''
+    got_image = False
+
+    while not got_image:
+        clock.tick(60)
+
+        pygame.event.pump()
+
+        keys = pg.key.get_pressed()
+        if keys[K_a]:
+            image = 'cat.png'
+            got_image = True
+        if keys[K_s]:
+            image = 'dog.png'
+            got_image = True
+        if keys[K_d]:
+            image = 'bird.png'
+            got_image = True
+
     # create player object
-    player = Player(0, 3)
+    player = Player(0, 3, image)
+
+    pg.display.flip()
+
+    # get screen object
+    screen = pg.display.set_mode((960, 720))
+    bg = Game('./assets/frogger-background.png', [0, 0])
 
     # create enemies and utilities
-    fly_group = Utilities.init_flies()
+    stars_group = Utilities.init_stars()
     fast_cars = Enemies.init_fast_cars()
     turtles = Utilities.init_turtles()
     logs = Utilities.init_logs()
@@ -45,10 +96,6 @@ def main():
     # Startup the main game loop
     running = True
     delta = 0
-    # shotDelta = 500
-    fps = 60
-    clock = pg.time.Clock()
-    clock.tick(fps)
 
     # MAIN GAME LOOP
     while running:
@@ -67,7 +114,7 @@ def main():
             player.up(delta)
         if keys[K_RIGHT]:
             player.right(delta)
-        if len(fly_group) == 0:
+        if len(stars_group) == 0:
             # Add a You've won screen?
             print("You've consumed all the flies!")
             return
@@ -90,9 +137,9 @@ def main():
 
         # Checks for collisions between player and any of the flies, the True removes a fly from the flies group when
         # collision occurs
-        fly_hits = pg.sprite.spritecollide(player, fly_group, True)
+        star_hits = pg.sprite.spritecollide(player, stars_group, True)
 
-        for hit in fly_hits:
+        for hit in star_hits:
             # Increment score when frog eats a fly 
             player.points += 100
             player.reset()
@@ -145,7 +192,7 @@ def main():
         screen.fill([255, 255, 255])
         screen.blit(bg.image, bg.rect)
 
-        for fly in fly_group:  # changed to group
+        for fly in stars_group:  # changed to group
             fly.draw(screen)
 
         for log in logs:
