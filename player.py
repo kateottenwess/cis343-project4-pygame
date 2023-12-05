@@ -41,7 +41,6 @@ class Player(Units):
         screen.blit(self.image, self.rect)
 
     def update(self, delta):
-        # TODO is this being blank the reason mr frog isn't moving ? Maybe lets test an implmentation...
         keys = pg.key.get_pressed()
         if keys[pg.K_LEFT] and self.rect.left > 0:
             self.rect.x -= 5

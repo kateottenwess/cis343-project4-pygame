@@ -14,6 +14,8 @@ class Game(pg.sprite.Sprite):
         self.image = pg.image.load(image_file)
         self.rect = self.image.get_rect()
         self.rect.left, self.rect.top = location
+        self.river_top = 380
+        self.river_bottom = 180
 
     @staticmethod
     def start_display(screen, font, color):
@@ -35,7 +37,6 @@ class Game(pg.sprite.Sprite):
         font.render_to(screen, (60, 400), "Press a for Cat          Press s for Dog          Press d for Bird", color,
                        None,
                        size=20)
-
 
 def main():
     # start pg
@@ -63,9 +64,9 @@ def main():
 
     while not got_image:
         clock.tick(60)
-
         pygame.event.pump()
-
+        
+        # Taking user input to determine character selection
         keys = pg.key.get_pressed()
         if keys[K_a]:
             image = 'cat.png'
@@ -84,7 +85,7 @@ def main():
 
     # get screen object
     screen = pg.display.set_mode((960, 720))
-    bg = Game('./assets/background.png', [0, 0])
+    game = Game('./assets/background.png', [0, 0])
 
     # create enemies and utilities
     stars_group = Utilities.init_stars()
@@ -103,25 +104,12 @@ def main():
             if event.type == pg.QUIT:
                 running = False
 
-        # update things that need to be updated
-        # move player
-        keys = pg.key.get_pressed()
-        if keys[KEYDOWN]:
-            player.down(delta)
-        if keys[K_LEFT]:
-            player.left(delta)
-        if keys[KEYUP]:
-            player.up(delta)
-        if keys[K_RIGHT]:
-            player.right(delta)
+        # update player
+        player.update(delta)
+
         if len(stars_group) == 0:
-            # Add a You've won screen?
             print("You've collected all the stars!")
             return
-
-        # TODO determine if checks need to be done here if frogger hit car or fell in water
-
-        player.update(delta)
 
         for log in logs:
             log.update_right(0.01)
@@ -135,12 +123,12 @@ def main():
         for car in fast_cars:
             car.update_left(0.0211)
 
-        # Checks for collisions between player and any of the flies, the True removes a fly from the flies group when
+        # Checks for collisions between player and any of the stars, the True removes a star from the stars group when
         # collision occurs
         star_hits = pg.sprite.spritecollide(player, stars_group, True)
 
         for hit in star_hits:
-            # Increment score when frog eats a fly 
+            # Increment score when player collects a star 
             player.points += 100
             player.reset()
 
@@ -148,49 +136,37 @@ def main():
         slow_hits = pg.sprite.spritecollide(player, slow_cars, False)
         fast_hits = pg.sprite.spritecollide(player, fast_cars, False)
 
-        for hit in slow_hits:
+        for hit in slow_hits + fast_hits:
             # Decrement player lives when they get hit
             if player.lives > 0:
                 player.lives -= 1
                 player.reset()
             else:
-                # Add a You've lost screen?
                 print("DEAD.....You lost!")
                 return
 
-        for hit in fast_hits:
-            # Decrement player lives when they get hit
-            if player.lives > 0:
-                player.lives -= 1
-                player.reset()
-            else:
-                # Add a You've lost screen?
-                print("DEAD.....You lost!")
-                return
-
-        # Check for collisions between frog and river (if falling into the river)
-        if 330 >= player.rect.bottom >= 210:
-            # Check for collisions between frog and logs
+        # Check for collisions between player and river -----------------------------------------------------------
+        if game.river_top > player.rect.bottom >= game.river_bottom:
+            # Check for collisions between player and logs
             log_hits = pygame.sprite.spritecollide(player, logs, False)
-            # Check for collisions between frog and turtles
+            # Check for collisions between player and turtles
             turtle_hits = pygame.sprite.spritecollide(player, turtles, False)
 
+            # Checking for collisions with logs or turtles to ride them -------------------------------------------
             if log_hits or turtle_hits:  # Use 'or' to check if either logs or turtles are hit
-                # Update frog's position based on the first log or turtle hit (if any)
+                # Update player position based on the log or turtle hit (if any)
                 if log_hits:
                     player.rect.x = log_hits[0].rect.x
                 elif turtle_hits:
                     player.rect.x = turtle_hits[0].rect.x
             else:
-                # Frog fell into the river without hitting logs or turtles
+                # player fell into the river without hitting logs or turtles
                 player.lives -= 1
                 player.reset()
 
-        # Checking for collisions with logs or turtles to ride them -------------------------------------------
-
         # draw
         screen.fill([255, 255, 255])
-        screen.blit(bg.image, bg.rect)
+        screen.blit(game.image, game.rect)
 
         for fly in stars_group:  # changed to group
             fly.draw(screen)
@@ -216,7 +192,6 @@ def main():
                 player.rect.x = turtle.rect.x
 
         # redraw lives and score
-
         font.render_to(screen, (10, 10), "Lives: ", RED, None, size=60)
         font.render_to(screen, (215, 10), str(player.lives), WHITE, None, size=60)
         font.render_to(screen, (350, 10), "Score: ", RED, None, size=60)
@@ -225,9 +200,7 @@ def main():
         player.draw(screen)
 
         # flip when drawing is done
-
         pg.display.flip()
-
         delta = clock.tick(fps) / 1000  # gives us how many ms the frame has taken
 
 
