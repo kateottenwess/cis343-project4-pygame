@@ -1,22 +1,25 @@
 from units import Units
 import pygame as pg
 
+''' By Anna Rabe and Kate Ottenwess'''
 
 class Player(Units):
     def __init__(self, points, lives, image):
         super(Player, self).__init__([460, 700], image)
         self.__points = points
         self.__lives = lives
-        # TODO do we need to set the image things or since its done in units we dont need to?
-
+        
+    # getter for points that the player has
     @property
     def points(self):
         return self.__points
-
+    
+    # getter for lives that the player has left
     @property
     def lives(self):
         return self.__lives
-
+    
+    # setter for points that the player has
     @points.setter
     def points(self, points):
         if not points:
@@ -27,6 +30,7 @@ class Player(Units):
             raise ValueError("Points can not be negative")
         self.__points = points
 
+    # setter for lives that the player has left
     @lives.setter
     def lives(self, lives):
         if not lives:
@@ -40,6 +44,7 @@ class Player(Units):
     def draw(self, screen):
         screen.blit(self.image, self.rect)
 
+    # Updates players position based on the arrow keys that the user presses.
     def update(self, delta):
         keys = pg.key.get_pressed()
         if keys[pg.K_LEFT] and self.rect.left > 0:
@@ -51,24 +56,7 @@ class Player(Units):
         if keys[pg.K_DOWN] and self.rect.bottom < 720:
             self.rect.y += 5
 
+    # Resets the player back to its starting position at the bottom of the screen.
     def reset(self):
         self.rect.x = 460
         self.rect.y = 700
-
-    def up(self, delta):
-        if self.rect.y > 0:
-            self.rect.y -= 120 * delta
-        # TODO
-
-    def down(self, delta):
-        if self.rect.y < 480:
-            self.rect.y += 120 * delta
-        # TODO
-
-    def left(self, delta):
-        pass
-        # TODO
-
-    def right(self, delta):
-        pass
-        # TODO

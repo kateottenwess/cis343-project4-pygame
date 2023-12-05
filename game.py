@@ -6,6 +6,7 @@ from pygame.locals import *
 import os
 import pygame.freetype
 
+''' By Anna Rabe and Kate Ottenwess'''
 
 class Game(pg.sprite.Sprite):
 

@@ -1,13 +1,13 @@
 import pygame as pg
 from units import Units
 
+''' By Anna Rabe and Kate Ottenwess'''
 
 class Enemies(Units):
     def __init__(self, image_name, start_location):
         super(Enemies, self).__init__(start_location, image_name)
 
-    # TODO create a function to determine if player is hit by enemy
-
+   # Initializes fast car enemies
     @staticmethod
     def init_fast_cars():
         fast_cars = []
@@ -30,9 +30,9 @@ class Enemies(Units):
         fast_car_group = pg.sprite.Group(fast_cars)
         return fast_car_group
 
+    # Initializes slow car enemies
     @staticmethod
     def init_slow_cars():
-        # set up slower cars
         slow_cars = []
 
         car1 = Enemies('car1.png', [100, 610])

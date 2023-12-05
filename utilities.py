@@ -1,16 +1,13 @@
 from units import Units
 import pygame as pg
 
+''' By Anna Rabe and Kate Ottenwess'''
 
 class Utilities(Units):
     def __init__(self, image_name, start_location):
         super(Utilities, self).__init__(start_location, image_name)
-        # TODO do we need to set the image things or since its done in units we dont need to?
-
-    # update function for the flies
-    def update_fly(self, delta):
-        pass
-
+        
+    # Creating the set of star sprites
     @staticmethod
     def init_stars():
 
@@ -31,10 +28,12 @@ class Utilities(Units):
         stars.append(star5)
         stars.append(star6)
         stars.append(star7)
-
+    
+        # Creating star group for sprite collide fxn call
         star_group = pg.sprite.Group(stars)
         return star_group
 
+    # Creating the set of turtle sprites
     @staticmethod
     def init_turtles():
         # set up turtles
@@ -66,10 +65,11 @@ class Utilities(Units):
         turtles.append(turtle11)
         turtles.append(turtle12)
 
-        # creating a sprite group out of fly list for sprite collide fxn call
+        # creating a sprite group out of turtle list for sprite collide fxn call
         turtle_group = pg.sprite.Group(turtles)
         return turtle_group
 
+    # Creating the set of log sprites
     @staticmethod
     def init_logs():
         logs = []
