@@ -4,6 +4,15 @@ import pygame as pg
 ''' By Anna Rabe and Kate Ottenwess'''
 
 class Player(Units):
+    """ The Player class for the Game. Contains the methods and attributes
+    relating to updating the player's status throughout game changes.
+
+    Attributes:
+        lives: The remaining lives the player has, starts at 3, game ends if they reach 0.
+        points: The amount of points the player has earned, maximum is 700. 
+                Game ends if they reach this.
+        
+    """
     def __init__(self, points, lives, image):
         super(Player, self).__init__([460, 700], image)
         self.__points = points

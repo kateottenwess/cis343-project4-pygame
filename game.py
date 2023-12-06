@@ -6,10 +6,33 @@ from pygame.locals import *
 import os
 import pygame.freetype
 
-''' By Anna Rabe and Kate Ottenwess'''
+
+"""
+    PyGame 8 - Bit Arcade Game
+    CIS 343
+    By Anna Rabe and Kate Ottenwess
+    
+    _summary_
+    Use the keyboard to select a character to start. Then, use the arrow
+    keys to navigate through the road of cars without getting hit. Next,
+    navigate across the river without falling in by jumping from logs to 
+    turtles, until you reach a star. Collect all the stars without losing
+    your lives and you win!
+"""
 
 class Game(pg.sprite.Sprite):
 
+    """ The Game class for the Game. Contains the initializer for the game
+        attributes, and function to start up the game display.
+
+    Attributes:
+        self.image: The background image for the game.
+        self.rect: The rectangle containing the player position.
+        self.river_top: The upper y-cooridinates of the rivers location.
+        self.river_bottom: The lower y-cooridinates of the rivers location.
+        
+    """
+        
     def __init__(self, image_file, location):
         pg.sprite.Sprite.__init__(self)
         self.image = pg.image.load(image_file)
@@ -39,7 +62,19 @@ class Game(pg.sprite.Sprite):
                        None,
                        size=20)
 
+
 def main():
+    
+    """ The Main Game Loop. Creates an instance of the game class, 
+    initializing it, and running it. 
+    
+    Takes user input to select a character, initializing it with the selected image.
+    Creates sprite groups for each utility and enemy type. Checks sprite groups for 
+    collisions with the player and executes appropriate actions. Updates player movement,
+    lives, and points as game progresses, checking for winning and losing conditions 
+    until one is met.
+    """
+    
     # start pg
     pg.init()
 

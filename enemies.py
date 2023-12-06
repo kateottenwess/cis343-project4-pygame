@@ -4,6 +4,14 @@ from units import Units
 ''' By Anna Rabe and Kate Ottenwess'''
 
 class Enemies(Units):
+    """ The Enemy class for the Game. Contains the methods and attributes for the cars
+    that can kill the player.
+
+    Attributes:
+        n/a
+        
+    """
+    
     def __init__(self, image_name, start_location):
         super(Enemies, self).__init__(start_location, image_name)
 

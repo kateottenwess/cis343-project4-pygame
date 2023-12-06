@@ -4,6 +4,15 @@ import pygame as pg
 ''' By Anna Rabe and Kate Ottenwess'''
 
 class Utilities(Units):
+    """ The Utility class for the Game. The utilities are any of the objects
+    used in the game that don't result in the player losing a life. Includes:
+    stars, logs, and turtles. 
+    
+    Attributes:
+        n/a
+        
+    """
+    
     def __init__(self, image_name, start_location):
         super(Utilities, self).__init__(start_location, image_name)
         

@@ -4,6 +4,15 @@ import os
 ''' By Anna Rabe and Kate Ottenwess'''
 
 class Units(pg.sprite.Sprite):
+    """ The Unit class for the Game. Contains the base code for all sprites, including stars,
+    logs, turtles, cars, and the player.
+    
+    Attributes:
+        direction: the direction of travel
+        self.rect: the cooridinate position of the unit. Contains both an x, and y.
+        start_location: The starting location of the player on the map.
+        
+    """
     def __init__(self, start_location, image_name):
         super(Units, self).__init__()
         self.image = pg.image.load(os.path.join('assets', image_name)).convert_alpha()
